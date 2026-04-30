@@ -8,9 +8,9 @@ export default defineConfig({
   server: {
     proxy: {
       "/api/v1": {
-        target: "http://44.203.20.211:8000",
+        target: "https://cf2e-44-203-20-211.ngrok-free.app",
         changeOrigin: true,
-        secure: false,
+        secure: true,
       },
     },
   },

@@ -1,8 +1,0 @@
-{
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "http://ec2-44-203-20-211.compute-1.amazonaws.com:8000"
-    }
-  ]
-}
