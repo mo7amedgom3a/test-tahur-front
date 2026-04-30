@@ -1,6 +1,6 @@
 import { ApiResponse } from "./types";
 
-const BASE_URL = "/api/v1";
+const BASE_URL = import.meta.env.DEV ? "/api/v1" : (import.meta.env.VITE_API_BASE_URL || "/api/v1");
 
 export const getAuthToken = () => localStorage.getItem("tahur_auth_token");
 export const setAuthToken = (token: string) => localStorage.setItem("tahur_auth_token", token);
