@@ -1,34 +1,26 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
 import { ArrowRight, Star, Clock, Award, CheckCircle2, Calendar, Video, X } from "lucide-react";
 import { getDoctorById } from "@/data/doctors";
 
-export const Route = createFileRoute("/doctors/$id")({
-  loader: ({ params }) => {
-    const doctor = getDoctorById(params.id);
-    if (!doctor) throw notFound();
-    return { doctor };
-  },
-  head: ({ loaderData }) => ({
-    meta: [
-      { title: loaderData ? `${loaderData.doctor.name} — طهور` : "طبيب — طهور" },
-      { name: "description", content: loaderData?.doctor.bio ?? "" },
-      { property: "og:image", content: loaderData?.doctor.image ?? "" },
-    ],
-  }),
-  component: DoctorPage,
-  notFoundComponent: () => (
+function DoctorNotFound() {
+  return (
     <div className="container mx-auto px-4 py-20 text-center">
       <h1 className="font-display text-3xl font-bold">الطبيب غير موجود</h1>
       <Link to="/" className="text-primary mt-4 inline-block">العودة للرئيسية</Link>
     </div>
-  ),
-});
+  );
+}
 
-function DoctorPage() {
-  const { doctor } = Route.useLoaderData();
+export default function DoctorPage() {
+  const { id } = useParams();
+  const doctor = id ? getDoctorById(id) : undefined;
   const [showBooking, setShowBooking] = useState(false);
   const [booked, setBooked] = useState(false);
+
+  if (!doctor) {
+    return <DoctorNotFound />;
+  }
 
   return (
     <>

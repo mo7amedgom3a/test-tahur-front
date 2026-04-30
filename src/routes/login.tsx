@@ -1,23 +1,11 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Mail, Lock, Eye, EyeOff, LogIn } from "lucide-react";
 import { AuthLayout } from "@/components/AuthLayout";
 import { adminApi } from "@/lib/api/admin";
 import { setAuthToken } from "@/lib/api/client";
 
-export const Route = createFileRoute("/login")({
-  head: () => ({
-    meta: [
-      { title: "تسجيل الدخول — طهور" },
-      { name: "description", content: "سجّل الدخول إلى حسابك في طهور للوصول إلى استشاراتك الطبية وحجوزاتك." },
-      { property: "og:title", content: "تسجيل الدخول — طهور" },
-      { property: "og:description", content: "سجّل الدخول إلى حسابك في طهور." },
-    ],
-  }),
-  component: LoginPage,
-});
-
-function LoginPage() {
+export default function LoginPage() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -40,7 +28,7 @@ function LoginPage() {
         setAuthToken(response.data.auth_token);
         // Store user info if needed
         localStorage.setItem("tahur_user", JSON.stringify(response.data));
-        navigate({ to: "/admin" });
+        navigate("/admin");
       } else {
         setError(response.message || "خطأ في تسجيل الدخول. يرجى التحقق من البيانات.");
       }

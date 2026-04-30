@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { StatusBadge } from "@/components/admin/StatusBadge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Eye, Loader2 } from "lucide-react";
-import { Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { adminApi } from "@/lib/api/admin";
 
@@ -73,7 +73,7 @@ export default function Appointments() {
                     <TableCell className="font-mono text-sm" dir="ltr">{a.slot_start || "—"}</TableCell>
                     <TableCell>
                       <Button asChild size="icon" className="rounded-xl bg-info text-info-foreground hover:bg-info/90 h-8 w-8">
-                        <Link to="/admin/appointments/$id" params={{ id: String(a.id) }} aria-label="عرض"><Eye className="h-4 w-4"/></Link>
+                        <Link to={`/admin/appointments/${a.id}`} aria-label="عرض"><Eye className="h-4 w-4"/></Link>
                       </Button>
                     </TableCell>
                   </TableRow>

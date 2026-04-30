@@ -1,12 +1,11 @@
-import { Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { Star, Clock, ArrowLeft } from "lucide-react";
 import type { Doctor } from "@/data/doctors";
 
 export function DoctorCard({ doctor }: { doctor: Doctor }) {
   return (
     <Link
-      to="/doctors/$id"
-      params={{ id: doctor.id }}
+      to={`/doctors/${doctor.id}`}
       className="group block bg-card rounded-3xl overflow-hidden border border-border/60 shadow-card hover:shadow-glow hover:-translate-y-1 transition-all duration-300"
     >
       <div className="relative aspect-[5/4] overflow-hidden bg-primary-soft">

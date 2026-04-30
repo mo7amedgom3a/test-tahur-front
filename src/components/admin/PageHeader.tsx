@@ -1,10 +1,10 @@
 import { ArrowRight } from "lucide-react";
-import { useRouter } from "@tanstack/react-router";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ReactNode } from "react";
 
 export function PageHeader({ title, subtitle, back, action }: { title: string; subtitle?: string; back?: boolean; action?: ReactNode }) {
-  const router = useRouter();
+  const navigate = useNavigate();
   return (
     <div className="mb-6 flex items-start justify-between gap-4">
       <div>
@@ -14,7 +14,7 @@ export function PageHeader({ title, subtitle, back, action }: { title: string; s
       <div className="flex items-center gap-2">
         {action}
         {back && (
-          <Button variant="ghost" onClick={() => router.history.back()} className="gap-2 text-accent hover:text-accent">
+          <Button variant="ghost" onClick={() => navigate(-1)} className="gap-2 text-accent hover:text-accent">
             <ArrowRight className="h-4 w-4" />
             رجوع
           </Button>

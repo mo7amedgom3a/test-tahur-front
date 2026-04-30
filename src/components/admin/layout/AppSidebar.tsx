@@ -2,7 +2,7 @@ import {
   LayoutDashboard, Users, UserCheck, Bell, ArrowDownToLine,
   Calendar, FileText, Settings, Receipt, LogOut
 } from "lucide-react";
-import { Link, useRouterState } from "@tanstack/react-router";
+import { Link, useLocation } from "react-router-dom";
 import {
   Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent,
   SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarHeader,
@@ -26,8 +26,7 @@ const items = [
 export function AppSidebar() {
   const { state } = useSidebar();
   const collapsed = state === "collapsed";
-  const { location } = useRouterState();
-  const pathname = location.pathname;
+  const { pathname } = useLocation();
   const isActive = (url: string) => url === "/admin" ? pathname === "/admin" : pathname.startsWith(url);
 
   return (

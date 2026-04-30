@@ -1,4 +1,4 @@
- import { useParams, useNavigate } from "@tanstack/react-router";
+import { useNavigate, useParams } from "react-router-dom";
 import { PageHeader } from "@/components/admin/PageHeader";
 import { Card } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -13,7 +13,7 @@ import { useQuery } from "@tanstack/react-query";
 import { adminApi } from "@/lib/api/admin";
 
 export default function AppointmentDetail() {
-  const { id } = useParams({ from: "/admin/appointments/$id" });
+  const { id } = useParams();
   const navigate = useNavigate();
 
   const { data: a, isLoading, isError } = useQuery({
@@ -42,7 +42,7 @@ export default function AppointmentDetail() {
         <p className="text-xl font-bold">الموعد غير موجود</p>
         <p className="text-muted-foreground mt-2">عذراً، لم نتمكن من العثور على بيانات هذا الموعد</p>
         <button 
-          onClick={() => navigate({ to: "/admin/appointments" })} 
+          onClick={() => navigate("/admin/appointments")} 
           className="mt-6 px-6 py-2 bg-primary text-primary-foreground rounded-xl font-bold hover:bg-primary/90 transition-smooth"
         >
           العودة لقائمة المواعيد

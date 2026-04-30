@@ -1,21 +1,9 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Mail, Lock, User, Phone, Eye, EyeOff, UserPlus } from "lucide-react";
 import { AuthLayout } from "@/components/AuthLayout";
 
-export const Route = createFileRoute("/register")({
-  head: () => ({
-    meta: [
-      { title: "إنشاء حساب — طهور" },
-      { name: "description", content: "أنشئ حسابك في طهور وابدأ رحلتك الصحية مع نخبة الأطباء في المملكة." },
-      { property: "og:title", content: "إنشاء حساب — طهور" },
-      { property: "og:description", content: "أنشئ حسابك في طهور وابدأ الآن." },
-    ],
-  }),
-  component: RegisterPage,
-});
-
-function RegisterPage() {
+export default function RegisterPage() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -46,7 +34,7 @@ function RegisterPage() {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      navigate({ to: "/" });
+      navigate("/");
     }, 800);
   };
 

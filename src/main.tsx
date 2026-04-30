@@ -1,14 +1,16 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { RouterProvider } from "@tanstack/react-router";
-import { getRouter } from "./router";
-import { routeTree } from "./routeTree.gen";
-
-const router = getRouter();
+import { BrowserRouter } from "react-router-dom";
+import App from "./App";
+import "./styles.css";
 
 const rootElement = document.getElementById("root");
 if (!rootElement) {
   throw new Error("Root element not found");
 }
 
-createRoot(rootElement).render(<RouterProvider router={router} />);
+createRoot(rootElement).render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+);

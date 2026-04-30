@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { useAdminTheme } from "@/components/admin/ThemeProvider";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 
 export function AppHeader() {
   const { theme, toggle } = useAdminTheme();

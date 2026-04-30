@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { specialties } from "@/data/specialties";
 import { Stethoscope, Users, Brain, Baby, Sparkles, Heart, Activity, Smile, ArrowLeft } from "lucide-react";
 
@@ -32,8 +32,7 @@ export function Specialties() {
           return (
             <Link
               key={s.slug}
-              to="/specialties/$slug"
-              params={{ slug: s.slug }}
+              to={`/specialties/${s.slug}`}
               className="group relative bg-card rounded-3xl p-5 lg:p-6 border border-border/60 shadow-card hover:shadow-glow hover:-translate-y-1 transition-all duration-300 overflow-hidden"
             >
               <div className={`absolute -top-12 -left-12 w-32 h-32 rounded-full bg-gradient-to-br ${accentClasses[s.accent]} opacity-10 group-hover:opacity-20 transition-opacity blur-2xl`} />

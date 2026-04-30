@@ -1,32 +1,26 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { Link, useParams } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { specialties } from "@/data/specialties";
 import { getDoctorsBySpecialty } from "@/data/doctors";
 import { DoctorCard } from "@/components/DoctorCard";
 
-export const Route = createFileRoute("/specialties/$slug")({
-  loader: ({ params }) => {
-    const specialty = specialties.find((s) => s.slug === params.slug);
-    if (!specialty) throw notFound();
-    return { specialty, doctors: getDoctorsBySpecialty(params.slug) };
-  },
-  head: ({ loaderData }) => ({
-    meta: [
-      { title: loaderData ? `${loaderData.specialty.name} — أطباء طهور` : "طهور" },
-      { name: "description", content: loaderData ? `أفضل أطباء ${loaderData.specialty.name} في المملكة العربية السعودية. احجز استشارتك الآن.` : "" },
-    ],
-  }),
-  component: SpecialtyPage,
-  notFoundComponent: () => (
+function SpecialtyNotFound() {
+  return (
     <div className="container mx-auto px-4 py-20 text-center">
       <h1 className="font-display text-3xl font-bold">التخصص غير موجود</h1>
       <Link to="/" className="text-primary mt-4 inline-block">العودة للرئيسية</Link>
     </div>
-  ),
-});
+  );
+}
 
-function SpecialtyPage() {
-  const { specialty, doctors } = Route.useLoaderData();
+export default function SpecialtyPage() {
+  const { slug } = useParams();
+  const specialty = specialties.find((s) => s.slug === slug);
+  const doctors = slug ? getDoctorsBySpecialty(slug) : [];
+
+  if (!specialty) {
+    return <SpecialtyNotFound />;
+  }
 
   return (
     <>
