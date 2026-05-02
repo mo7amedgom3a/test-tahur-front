@@ -49,7 +49,7 @@ export default function Dashboard() {
             <circle cx="380" cy="150" r="40" fill="white" opacity="0.6" />
           </svg>
           <div className="relative">
-            <p className="text-2xl font-bold">مرحباً 👋</p>
+            <p className="text-2xl font-bold">مرحباً دكتور👋</p>
             <p className="mt-1 text-sm opacity-90">نتمنى لك يوماً ملهماً ومثمراً</p>
             <p className="mt-4 text-xs opacity-75">منصة طهور للرعاية الصحية</p>
           </div>

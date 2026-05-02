@@ -8,7 +8,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api/v1": {
-        target: "https://cf2e-44-203-20-211.ngrok-free.app",
+        target: "https://tahur-backend.tahuraufia.workers.dev",
         changeOrigin: true,
         secure: true,
       },
